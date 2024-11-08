@@ -1,7 +1,7 @@
 n, m, k = map(int, input().split())
 dist_list = list(map(int, input().split()))
 selected = []
-location = [1 for _ in range(k+1)]
+location = [1 for _ in range(k)]
 mx = 0
 
 def print_selected():
@@ -12,7 +12,7 @@ def print_selected():
 def score():
     result = 0
     for x in location:
-        if x >= 6:
+        if x >= m:
             result += 1
     return result
 
@@ -25,7 +25,7 @@ def choose(cnt):
         if score() > mx:
             mx = score()
         return
-    for i in range(1, k+1):
+    for i in range(k):
         if location[i] >= m:
             continue
         selected.append(i)
