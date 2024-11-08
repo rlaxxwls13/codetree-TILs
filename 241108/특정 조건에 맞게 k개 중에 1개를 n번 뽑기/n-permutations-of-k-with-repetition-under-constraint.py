@@ -7,16 +7,16 @@ def print_list():
     print()
 
 def choose(curr_num):
-    if curr_num == N+1:
+    if curr_num == N:
         print_list()
         return
 
     for i in range(1, K+1):
         if len(selected) >= 2 and selected[curr_num-1] == i and selected[curr_num-2] == i:
-            break
+            continue
         selected.append(i)
         choose(curr_num+1)
         selected.pop()
     return
 
-choose(1)
+choose(0)
