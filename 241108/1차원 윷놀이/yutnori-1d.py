@@ -4,11 +4,6 @@ selected = []
 location = [1 for _ in range(k)]
 mx = 0
 
-def print_selected():
-    for x in selected:
-        print(x, end=" ")
-    print()
-
 def score():
     result = 0
     for x in location:
@@ -21,17 +16,18 @@ def score():
 
 def choose(cnt):
     global mx
+
+    # cnt 끝까지 가지 않더라도 최대가 될 수 있으므로 항상 답을 갱신함
+    mx = max(score(), mx)
     if cnt == n:
-        if score() > mx:
-            mx = score()
         return
+
     for i in range(k):
-        #if location[i] >= m:
-        #    continue
-        selected.append(i)
+        # 전부 m을 넘을때 cnt 끝까지 못가고 끝나버리는 문제가 ...
+        if location[i] >= m:
+            continue
         location[i] += dist_list[cnt]
         choose(cnt + 1)
-        selected.pop()
         location[i] -= dist_list[cnt]
     return
 
