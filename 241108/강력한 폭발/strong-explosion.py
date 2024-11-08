@@ -6,11 +6,11 @@ def apply_bomb(loc, bomb):
     # bomb ex: [[-2,0],[-1,0],[0,0],[1,0],[2,0]]
     # loc ex: [1,1]
     # bomb 각각에 curr_location을 더해서 리턴해야함
-    # 더했을때 0<=index<=3이어야함
+    # 더했을때 0<=index<n이어야함
     result = []
     for bomb_area in bomb:
         result.append(list(map(sum, zip(loc, bomb_area))))
-    return list(filter(lambda x: x[0] < 4 and x[0] >= 0 and x[1] >= 0 and x[1] < 4, result))
+    return list(filter(lambda x: x[0] < n and x[0] >= 0 and x[1] >= 0 and x[1] < n, result))
     #return list(map(lambda x: list(map(sum, zip(x, bomb_location[curr_location]))), bomb))
 
 def count_area(bomb_area):
