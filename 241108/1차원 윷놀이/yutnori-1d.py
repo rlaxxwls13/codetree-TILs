@@ -26,8 +26,8 @@ def choose(cnt):
             mx = score()
         return
     for i in range(k):
-        if location[i] >= m:
-            continue
+        #if location[i] >= m:
+        #    continue
         selected.append(i)
         location[i] += dist_list[cnt]
         choose(cnt + 1)
