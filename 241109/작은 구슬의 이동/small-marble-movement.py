@@ -1,5 +1,5 @@
 dic = {'U': 0, 'D': 2, 'R': 1,'L': 3}
-dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
+dxs, dys = [0, 1, 0, -1], [-1, 0, 1, 0]
 
 n, t = map(int, input().split())
 r, c, d = input().split()
