@@ -1,28 +1,20 @@
 dic = {'U': 0, 'D': 2, 'R': 1,'L': 3}
-dxs, dys = [0, 1, 0, -1], [-1, 0, 1, 0]
+dxs, dys = [-1, 0, 1, 0], [0, 1, 0, -1]
 
 n, t = map(int, input().split())
-r, c, d = input().split()
+x, y, d = input().split()
 
-x, y = int(c) - 1, int(r) - 1
+x, y = int(x) - 1, int(y) - 1
 dir = dic[d]
 
-def in_corner(x, y, dir):
-    if dir == 0:
-        return y == 0
-    elif dir == 1:
-        return x == n-1
-    elif dir == 2:
-        return y == n-1
-    elif dir == 3:
-        return x == 0
-    
+def in_range(x, y):
+    return 0 <= x < n and 0 <= y < n    
 
-for i in range(t):
-    if in_corner(x, y, dir):
+for _ in range(t):
+    nx, ny = x + dxs[dir], y + dys[dir]
+    if in_range(nx, ny):
+        x, y = nx, ny
+    else:
         dir = (dir + 2) % 4
-        continue
-    x += dxs[dir]
-    y += dys[dir]
 
-print(f"{y+1} {x+1}")
+print(x+1, y+1)
