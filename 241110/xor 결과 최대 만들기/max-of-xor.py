@@ -16,7 +16,7 @@ def choose(cnt):
         ans = max(ans, xor())
         return
 
-    for i in range(1, n+1):
+    for i in num_list:
         if i in selected:
             continue
         selected.append(i)
