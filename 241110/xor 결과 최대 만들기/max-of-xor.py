@@ -10,19 +10,19 @@ selected = []
 def xor():
     return reduce(lambda x, y: x^y, selected) 
 
-def choose(cnt):
+def choose(cnt, curr_num):
     global ans
-    if cnt == m:
-        ans = max(ans, xor())
+    if curr_num == n:
+        if cnt == m:
+            ans = max(ans, xor())
         return
+    
+    selected.append(num_list[curr_num])
+    choose(cnt + 1, curr_num + 1)
+    selected.pop()
 
-    for i in num_list:
-        if i in selected:
-            continue
-        selected.append(i)
-        choose(cnt + 1)
-        selected.pop()
+    choose(cnt, curr_num + 1)
 
 
-choose(0)
+choose(0, 0)
 print(ans)
