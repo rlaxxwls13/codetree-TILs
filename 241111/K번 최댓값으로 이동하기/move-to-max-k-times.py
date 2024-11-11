@@ -2,42 +2,57 @@ from collections import deque
 
 n, k = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
-x, y = map(lambda a: int(a) - 1, input().split())
+curr_x, curr_y = map(lambda a: int(a) - 1, input().split())
 
-q = deque()
-
-cnt = -1
-
-visited = [[False for _ in range(n)] for _ in range(n)]
+dxs, dys = [-1, 0, 1, 0], [0, 1, 0, -1]
 
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
 
+def can_go(x, y):
+    return in_range(x, y) and visited[x][y] == False 
+
 def bfs():
-    global cnt, x, y
-    dxs, dys = [-1, 0, 1, 0], [0, 1, 0, -1]
 
     while q:
         x, y = q.popleft()
-        cnt += 1
 
-        if cnt == k:
-            return
-
-        mx = 0
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
-            if in_range(nx, ny) and grid[nx][ny] < grid[x][y]:
-                mx = max(mx, grid[nx][ny])
+            if can_go(nx, ny) and grid[nx][ny] < grid[curr_x][curr_y]:
+                q.append((nx, ny))
+                adjacent.append((nx, ny))
+                visited[nx][ny] = True
 
-        for i in range(n):
-            for j in range(n):
-                if grid[i][j] == mx:
-                    q.append((i, j))
-                    break
-            if q:
+for _ in range(k):
+
+    # bfs로 갈 수 있는 칸 구하기
+    q = deque()
+    visited = [[False for _ in range(n)] for _ in range(n)]
+    adjacent = []
+    
+    q.append((curr_x, curr_y))
+    visited[curr_x][curr_y] = True
+    bfs()
+
+    # 갈 수 있는 칸이 없으면 break
+    if not adjacent:
+        break
+
+    # 갈 수 있는 칸 중 최댓값을 구함
+    mx = -1
+    for x, y in adjacent:
+        mx = max(mx, grid[x][y])
+
+    nx, ny = -1, -1
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] == mx:
+                nx, ny = i, j
                 break
+        if nx != -1:
+            break
+    curr_x, curr_y = nx, ny
 
-q.append((x, y))
-bfs()
-print(x + 1, y + 1)
+
+print(curr_x + 1, curr_y + 1)
