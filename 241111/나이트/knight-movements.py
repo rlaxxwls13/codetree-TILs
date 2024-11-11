@@ -3,6 +3,8 @@ from collections import deque
 n = int(input())
 r1, c1, r2, c2 = map(int, input().split())
 
+x1, y1, x2, y2 = r1 - 1, c1 - 1, r2 - 1, c2 - 1
+
 visited = [[False for _ in range(n)] for _ in range(n)]
 step = [[-1 for _ in range(n)] for _ in range(n)]
 
@@ -28,9 +30,9 @@ def bfs():
                 step[nx][ny] = step[x][y] + 1
 
 
-q.append((r1, c1))
-step[r1][c1] = 0
-visited[r1][c1] = True
+q.append((x1, y1))
+step[x1][y1] = 0
+visited[x1][y1] = True
 bfs()
 
-print(step[r2][c2])
+print(step[x2][y2])
