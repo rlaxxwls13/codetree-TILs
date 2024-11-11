@@ -17,4 +17,7 @@ def dfs(x, y):
             visited[nx][ny] = True
             dfs(nx, ny)
 
+visited[0][0] = True
+dfs(0, 0)
+
 print(1 if visited[n-1][m-1] == True else 0)
