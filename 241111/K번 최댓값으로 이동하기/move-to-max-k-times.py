@@ -47,14 +47,12 @@ for _ in range(k):
     for x, y in adjacent:
         mx = max(mx, grid[x][y])
 
-    nx, ny = -1, -1
-    for i in range(n):
-        for j in range(n):
-            if (i,j) in adjacent and grid[i][j] == mx:
-                nx, ny = i, j
-                break
-        if nx != -1:
-            break
+    nx, ny = n, n
+    for x, y in adjacent:
+        if grid[x][y] == mx:
+            if (x, y) < (nx, ny):
+                nx, ny = x, y
+
     curr_x, curr_y = nx, ny
 
 print(curr_x + 1, curr_y + 1)
