@@ -17,10 +17,10 @@ q = deque()
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
 
-def can_go(x, y, curr_visited):
-    return in_range(x, y) and grid[x][y] == 0 and curr_visited[x][y] == False
+def can_go(x, y):
+    return in_range(x, y) and grid[x][y] == 0 and visited[x][y] == False
 
-def bfs(curr_visited):
+def bfs():
     dxs, dys = [-1, 0, 1, 0], [0, 1, 0, -1]
     
     while q:
@@ -28,17 +28,14 @@ def bfs(curr_visited):
 
         for dx, dy in zip(dxs, dys):
             nx, ny = x + dx, y + dy
-            if can_go(nx, ny, curr_visited):
-                curr_visited[nx][ny] = True
+            if can_go(nx, ny):
                 visited[nx][ny] =True
                 q.append((nx, ny))
 
 for x, y in zip(start_x, start_y):
-    curr_visited = [[False for _ in range(n)] for _ in range(n)]
-    curr_visited[x][y] = True
     visited[x][y] = True
     q.append((x, y))
-    bfs(curr_visited)
+    bfs()
 
 for i in range(n):
     for j in range(n):
