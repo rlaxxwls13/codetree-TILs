@@ -1,3 +1,7 @@
+import sys
+
+sys.setrecursionlimit(10**5)
+
 n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 visited = [[False for _ in range(m)] for _ in range(n)]
