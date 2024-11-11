@@ -22,14 +22,14 @@ def dfs(x, y, k):
             visited[nx][ny] = True
             dfs(nx, ny, k)
 
-k_list = [0]
+k_list = []
 max_k = grid[0][0]
 
 for i in range(n):
     for j in range(m):
         max_k = max(max_k, grid[i][j])
 
-for k in range(1, max_k):
+for k in range(1, max_k+1):
     ans = 0
     initialize()
     for i in range(n):
@@ -41,4 +41,4 @@ for k in range(1, max_k):
     k_list.append(ans)
 
 max = max(k_list)
-print(k_list.index(max), max)
+print(k_list.index(max) + 1, max)
