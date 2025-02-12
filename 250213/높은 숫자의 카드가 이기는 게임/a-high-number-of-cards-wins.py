@@ -3,20 +3,21 @@ B = [int(input()) for _ in range(N)]
 
 # Write your code here!
 
-A = []
+A = [False] + [True for _ in range(2 * N)]
 ans = 0
 
-for i in range(1, 2 * N + 1): 
-    if not i in B:
-        A.append(i)
-
 B.sort()
-A.sort()
+
+for elem in B: 
+    A[elem] = False
 
 b_idx = 0
 
-for elem in A:
-    if elem > B[b_idx]:
+for i in range(1, 2 * N + 1):
+    if A[i] == False:
+        continue
+
+    if i > B[b_idx]:
         ans += 1
         b_idx += 1
 
