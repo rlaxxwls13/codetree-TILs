@@ -15,13 +15,21 @@ start, end = 0, N - 1
 i = 0
 
 while(i <= M//2):
-    if i > sum(sorted_x[:start + 1]):
-        start += 1
-    if i > sum(sorted_x[end:]):
-        end -= 1
 
     ans = max(ans, sorted_y[start] + sorted_y[end])
-    i += min(sorted_x[start], sorted_x[end])
+
+    if sorted_x[start] > sorted_x[end]:
+        sorted_x[start] -= sorted_x[end]
+        end -= 1
+        i += sorted_x[end]
+    elif sorted_x[start] < sorted_x[end]:
+        sorted_x[end] -= sorted_x[start]
+        start += 1
+        i += sorted_x[start]
+    else:
+        start += 1
+        end -= 1
+        i += sorted_x[start]
 
 
 print(ans)
