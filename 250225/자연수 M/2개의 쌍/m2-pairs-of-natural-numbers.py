@@ -5,17 +5,20 @@ x, y = list(x), list(y)
 # Write your code here!
 # 제일 큰 수를 제일 작은 수부터 짝지어나가기
 
-ans = 0
+ans = -1
 M = sum(x)
 
-cnt_num = sorted(list(zip(x, y)), key=lambda x: x[1])
-num_list = []
+sorted_x, sorted_y = zip(*sorted(list(zip(x, y)), key=lambda x: x[1]))
+sorted_x, sorted_y = list(sorted_x), list(sorted_y)
 
-for x, y in cnt_num:
-    for _ in range(x):
-        num_list.append(y)
+start, end = 0, N - 1
 
 for i in range(M//2):
-    ans = max(ans, num_list[i] + num_list[M - 1 - i])
+    if i > sum(sorted_x[:start + 1]):
+        start += 1
+    if i > sum(sorted_x[end:]):
+        end -= 1
+    ans = max(ans, sorted_y[start] + sorted_y[end])
+
 
 print(ans)
