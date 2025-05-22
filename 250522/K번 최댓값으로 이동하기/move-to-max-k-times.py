@@ -22,7 +22,7 @@ def bfs():
 
 def find_max_idx():
     x_idx, y_idx = 0, 0
-    curr_max = 1
+    curr_max = 0
     for i in range(n):
         for j in range(n):
             if (i, j) in adjacent and grid[i][j] > curr_max:
@@ -30,9 +30,9 @@ def find_max_idx():
                 curr_max = grid[i][j]
     return x_idx, y_idx, curr_max
 
+
 x, y = r - 1, c - 1
 curr = grid[x][y]
-
 
 for _ in range(k):
     q = deque()
@@ -43,6 +43,8 @@ for _ in range(k):
     visited[x][y] = True
 
     bfs()
+    if not adjacent:
+        break
     x, y, curr = find_max_idx()
 
 print(x + 1, y + 1)
