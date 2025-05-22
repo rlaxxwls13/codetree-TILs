@@ -25,7 +25,7 @@ def find_max_idx():
     curr_max = 0
     for i in range(n):
         for j in range(n):
-            if (i, j) in adjacent and grid[i][j] > curr_max:
+            if visited[i][j] == True and (i, j) != (x, y) and grid[i][j] > curr_max:
                 x_idx, y_idx = i, j
                 curr_max = grid[i][j]
     return x_idx, y_idx, curr_max
