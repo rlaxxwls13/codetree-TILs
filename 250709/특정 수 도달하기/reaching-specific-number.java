@@ -21,6 +21,6 @@ public class Main {
 
         double mean = sum / cnt;
 
-        System.out.print(sum + " " + mean);
+        System.out.printf("%d %.1f", sum, mean);
     }
 }
