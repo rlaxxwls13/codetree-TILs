@@ -7,7 +7,7 @@ public class Main {
         char c = sc.next().charAt(0);
         int idx = -1;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             if (arr[i] == c) {
                 idx = i;
             }
