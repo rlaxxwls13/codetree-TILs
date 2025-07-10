@@ -17,7 +17,7 @@ public class Main {
 
         boolean isSub = false;
 
-        for (int i = 0; i < n1; i++) {
+        for (int i = 0; i < n1 - n2 + 1; i++) {
             for (int j = 0; j < n2; j++) {
                 if (A[i + j] != B[j]) {
                     break;
