@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final int MAX_INT = Integer.MAX_VALUE;
+
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
@@ -11,16 +11,16 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        int min = MAX_INT;
+        int min = arr[1] - arr[0];
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (Math.abs(arr[i] - arr[j]) < min) {
-                    min = Math.abs(arr[i] - arr[j]);
-                }
+        for (int i = 1; i < n - 1; i++) {
+            int diff = arr[i + 1] - arr[i];
+            if (min > diff) {
+                min = diff;
             }
         }
-        
+
         System.out.print(min);
+        
     }
 }
