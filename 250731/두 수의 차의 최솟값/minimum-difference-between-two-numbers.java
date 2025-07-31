@@ -15,8 +15,8 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (Math.abs(i - j) < min) {
-                    min = Math.abs(i - j);
+                if (Math.abs(arr[i] - arr[j]) < min) {
+                    min = Math.abs(arr[i] - arr[j]);
                 }
             }
         }
