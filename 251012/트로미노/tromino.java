@@ -14,7 +14,7 @@ public class Main {
             blockSum2 = grid[x][y] + grid[x+1][y] + grid[x][y+1];
             blockSum3 = grid[x][y] + grid[x][y+1] + grid[x+1][y+1];
         }
-        if (x - 1 >= 0 && y + 1 < n)
+        if (x - 1 >= 0 && y + 1 < m)
             blockSum4 = grid[x][y] + grid[x-1][y+1] + grid[x][y+1];
         return Math.max(blockSum1, Math.max(blockSum2, Math.max(blockSum3, blockSum4)));
     }
