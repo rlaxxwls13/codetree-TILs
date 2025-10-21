@@ -3,8 +3,25 @@ import java.util.Scanner;
 public class Main{
     public static final int MAX_N = 100;
 
-    public static int n, s, e, cnt;
+    public static int n, s, e, cnt, endOfArray;
     public static int[] arr = new int[MAX_N];
+
+    public static void cutArray(int s, int e) {
+        int[] temp = new int[MAX_N];
+        int tempIdx = 0;
+
+        for (int i = 0; i < endOfArray; i++) {
+            if (i < s || i > e) {
+                temp[tempIdx++] = arr[i];
+            }
+        }
+
+        for (int i = 0; i < tempIdx; i++) {
+            arr[i] = temp[i];
+        }
+
+        endOfArray = tempIdx;
+    }
 
     public static void removeBlock(int s, int e) {
         for(int i = s; i <= e; i++) {
@@ -42,14 +59,16 @@ public class Main{
             arr[i] = sc.nextInt();
         }
 
+        endOfArray = n;
+
         for (int i = 0; i < 2; i++) {
             s = sc.nextInt();
             e = sc.nextInt();
-            simulate(s - 1, e - 1);
+            cutArray(s - 1, e - 1);
         }
 
-        System.out.println(cnt);
-        for (int i = 0; i < cnt; i++) {
+        System.out.println(endOfArray);
+        for (int i = 0; i < endOfArray; i++) {
             System.out.println(arr[i]);
         }
 
